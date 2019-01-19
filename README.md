@@ -25,7 +25,9 @@ Because I needed something like this for my personal project.
 
 ## Algorithms
 
-For [key derivation functions](https://en.wikipedia.org/wiki/Key_derivation_function) only 
+* For [key derivation functions](https://en.wikipedia.org/wiki/Key_derivation_function) only [PBKDF2](https://en.wikipedia.org/wiki/PBKDF2)
+* For [symmetric-key algorithms](https://en.wikipedia.org/wiki/Symmetric-key_algorithm) options are [AES](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard) (CTR) and [ChaCha20](https://en.wikipedia.org/wiki/Salsa20#ChaCha_variant)
+* For [checksums](https://en.wikipedia.org/wiki/Checksum) only [SHA256](https://en.wikipedia.org/wiki/SHA-2)
 
 ## Why were certain algorithms chosen?
 
