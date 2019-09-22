@@ -58,7 +58,7 @@ Integer that tells how many iterations have to be done. Minimum value is 1, reco
 
 #### Identifier
 
-Identifier of KDF, used to pair KDF and Symmetric-key algorithm. Base64 encoded UTF-8 string. SHOULD be unique, so every KDF in a file should have unique identifer.
+Base64 encoded UTF-8 string as identifier of KDF, used to pair KDF and Symmetric-key algorithm. SHOULD be unique, so every KDF in a file should have unique identifer.
 
 &nbsp;
 
@@ -108,7 +108,7 @@ Base64 encoded UTF-8 string that contains tab (**\t**) separated tag entries
 
 #### Checksum
 
-Base64 encoded UTF-8 string that contain SHA-256 checksum of all other login information variables concatenated together
+UTF-8 string (can only contain hex chars, so numbers 0-9 and letters A-F) that contain SHA-256 checksum of all other login information variables concatenated together
 
 &nbsp;
 
@@ -118,7 +118,7 @@ Encrypted entries, each entry MUST contain following:
 
 #### Key identifier
 
-Key identifier is used to pair one KDF entry to this login information
+Base64 encoded UTF-8 string Key identifier is used to pair one KDF entry to this login information
 
 #### Algorithm
 
@@ -170,7 +170,7 @@ UTF-8 string that contains tab (**\t**) separated tag entries
 
 #### Checksum
 
-Base64 encoded UTF-8 string that contain SHA-256 checksum of
+UTF-8 string (can only contain hex chars, so numbers 0-9 and letters A-F) that contain SHA-256 checksum of all other login information secret variables concatenated together
 
 &nbsp;
 
@@ -186,7 +186,7 @@ Following values must be included
 
 ##### Key size
 
-Valid integer values are 128, 192 or 256 (bits)
+Integer, valid values are 128, 192 or 256 (bits)
 
 ##### Initial counter
 
@@ -231,7 +231,7 @@ Integer, [UNIX timestamp](https://en.wikipedia.org/wiki/Unix_time) in seconds
 
 #### Checksum
 
-Base64 encoded UTF-8 string that contain SHA-256 checksum of note
+UTF-8 string (can only contain hex chars, so numbers 0-9 and letters A-F) that contain SHA-256 checksum of note
 
 &nbsp;
 
@@ -246,7 +246,7 @@ Can contain multiple note entries which are in following format:
 
 #### Key identifier
 
-Key identifier is used to pair one KDF entry to this login information
+Base64 encoded UTF-8 string, is used to pair one KDF entry to this note
 
 #### Algorithm
 
