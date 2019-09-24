@@ -24,27 +24,29 @@
 
 ## Common things
 
-There are three different variable types that are supported. Integers (signed), [UTF-8](https://en.wikipedia.org/wiki/UTF-8) strings for text and [base64](https://en.wikipedia.org/wiki/Base64) encoded byte arrays for binary data.
+There are three different variable types that are supported. Integers (signed), [UTF-8](https://en.wikipedia.org/wiki/UTF-8) strings for text and [base64](https://en.wikipedia.org/wiki/Base64) encoded byte arrays for binary data or text.
+
+Basically all hardcoded strings (e.g. enum likes) are stored as UTF-8. Anything that user can input (e.g. URL) is stored as base64 encoded byte array (so UTF-8 string is converted to bytes and then base64 encoded). This decision is made in name of interoperability (so one can e.g. copy values from JSON to XML and everything should just work).
 
 ## File extensions
 
-CommonSecret file should have file extension chain that explains how it should be opened. e.g. *foods.commonsecret.xml* would mean that CommonSecret is stored to XML format, and *fruits.commonsecret.json.png* would mean that CommonSecret is stored to JSON which is then stored to PNG image file.
+CommonSecrets file should have file extension chain that explains how it should be opened. e.g. *foods.commonsecrets.xml* would mean that CommonSecrets is stored to XML format, and *fruits.commonsecrets.json.png* would mean that CommonSecrets is stored to JSON which is then stored to PNG image file.
 
 ## Mandatory parts
 
 ### Version number
 
-This **MUST** be first element (and this is only element where order matters). Contains an integer that tells what CommonSecret version this file uses. Currently there is only version 1.
+This **MUST** be first element (and this is only element where order matters). Contains an integer that tells what CommonSecrets version this file uses. Currently there is only version 1.
 
 ## Data parts
 
 ### Key derivation functions (KDF)
 
-List of text objects that define key derivation functions. There can be multiple Key derivation functions defined in one CommonSecret file.
+List of text objects that define key derivation functions. There can be multiple Key derivation functions defined in one CommonSecrets file.
 
 #### KDF Algorithms
 
-Only [PBKDF2](https://en.wikipedia.org/wiki/PBKDF2) is supported, with **HMAC-SHA256** and **HMAC-SHA512** 
+Only [PBKDF2](https://en.wikipedia.org/wiki/PBKDF2) is supported, with **HMAC-SHA256** and **HMAC-SHA512** as pseudo-random functions.
 
 ##### PBKDF2 options
 
@@ -54,7 +56,7 @@ Base64 encoded salt, decoded content should be 16 bytes (128 bits)
 
 ###### Iterations
 
-Integer that tells how many iterations have to be done. Minimum value is 1, recommended is
+Integer that tells how many iterations have to be done. Minimum value is 1, recommended is something over 100 000
 
 #### Identifier
 
@@ -217,6 +219,10 @@ Integer value that contains counter that is used to init ChaCha20
 
 Can contain multiple note entries which are in following format:
 
+#### Note title
+
+Base64 encoded UTF-8 string that contains the title of note
+
 #### Note text
 
 Base64 encoded UTF-8 string that contains the content of note
@@ -240,13 +246,13 @@ UTF-8 string (can only contain hex chars, so numbers 0-9 and letters A-F) that c
 
 ### Notes (secret)
 
-Can contain multiple note entries which are in following format:
+Can contain multiple note secret entries which are in following format:
 
 &nbsp;
 
 #### Key identifier
 
-Base64 encoded UTF-8 string, is used to pair one KDF entry to this note
+Base64 encoded UTF-8 string, is used to pair one KDF entry to this note secret
 
 #### Algorithm
 
@@ -256,9 +262,13 @@ See [Symmetric-key algorithms](Symmetric-key-algorithms)
 
 Base64 encoded byte array that contains encrypted [AUDALF](https://github.com/mcraiha/AUDALF) bytes. AUDALF contains following entries:
 
+##### Note title
+
+UTF-8 string that contains the title of note
+
 ##### Note text
 
-UTF-8 string
+UTF-8 string that contains the content of note
 
 ##### Creation time
 
@@ -272,4 +282,4 @@ UTF-8 string
 
 #### Checksum
 
-Base64 encoded UTF-8 string that contain SHA-256 checksum of note data
+UTF-8 string (can only contain hex chars, so numbers 0-9 and letters A-F) that contain SHA-256 checksum of all other note secret variables concatenated together
