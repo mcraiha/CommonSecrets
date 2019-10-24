@@ -19,7 +19,12 @@
 | File extensions  | How file extensions should work | [File extensions](#File-extensions) |
 | Mandatory parts | What entries every file must have | [Mandatory parts](#Mandatory-parts) |
 | Key derivation functions (KDF) | Definition of available KDF options | [Key derivation functions (KDF)](#Key-derivation-functions-(KDF)) |
-| Key and value pairs | Definition of key and value pairs of AUDALT | [Key and value pairs](#Key-and-value-pairs)
+| Login informations | Definition of login informations | [Login informations](#Login-informations)
+| Login informations (secret / encrypted) |  Definition of login informations (secret / encrypted) | [Login informations (secret / encrypted)](#Login-informations-(secret-/-encrypted))
+| Note entries | Definition of Note entries | [Note entries](#Note-entries)
+| Note entries (secret / encrypted) | Definition of Note entries (secret / encrypted) | [Note entries (secret / encrypted)](#Note-entries-(secret-/-encrypted))
+| File entries | Definition of File entries | [File entries](#File-entries)
+| File entries (secret / encrypted) | Definition of File entries (secret / encrypted) | [File entries (secret / encrypted)](#File-entries-(secret-/-encrypted))
 
 
 ## Common things
@@ -64,7 +69,7 @@ Integer that tells how many iterations have to be done. Minimum value is 1, reco
 
 Base64 encoded UTF-8 string as identifier of KDF, used to pair KDF and Symmetric-key algorithm. SHOULD be unique, so every KDF in a file should have unique identifer.
 
-&nbsp;
+---
 
 ### Login informations
 
@@ -118,7 +123,7 @@ Base64 encoded UTF-8 string that contains tab (**\t**) separated tag entries
 
 UTF-8 string (can only contain hex chars, so numbers 0-9 and letters A-F) that contain SHA-256 checksum of all other login information variables concatenated together. Integer variables are first turn into little-endian byte arrays.
 
-&nbsp;
+---
 
 ### Login informations (secret / encrypted)
 
@@ -184,7 +189,7 @@ UTF-8 string that contains tab (**\t**) separated tag entries
 
 UTF-8 string (can only contain hex chars, so numbers 0-9 and letters A-F) that contain SHA-256 checksum of all other login information secret variables concatenated together
 
-&nbsp;
+---
 
 ### Symmetric-key algorithms
 
@@ -222,10 +227,10 @@ Base64 encoded byte array that contains 96 bits of nonce used to init ChaCha20
 
 Integer value that contains counter that is used to init ChaCha20
 
-&nbsp;
+---
 
 
-### Notes
+### Note entries
 
 Can contain multiple note entries which are in following format:
 
@@ -249,16 +254,12 @@ Integer, [UNIX timestamp](https://en.wikipedia.org/wiki/Unix_time) in seconds
 
 UTF-8 string (can only contain hex chars, so numbers 0-9 and letters A-F) that contain SHA-256 checksum of note. Integer variables are first turn into little-endian byte arrays.
 
-&nbsp;
+---
 
-&nbsp;
-
-
-### Notes (secret / encrypted)
+### Note entries (secret / encrypted)
 
 Can contain multiple note secret entries which are in following format:
 
-&nbsp;
 
 #### Key identifier
 
@@ -288,11 +289,12 @@ UTF-8 string that contains the content of note
 
 64 bit unsigned integer, Unix time in seconds (see type ID **117440513** in AUDALF specifications)
 
-&nbsp;
 
 #### Checksum
 
 UTF-8 string (can only contain hex chars, so numbers 0-9 and letters A-F) that contain SHA-256 checksum of all other note secret variables concatenated together
+
+---
 
 
 ### File entries
@@ -319,16 +321,13 @@ Integer, [UNIX timestamp](https://en.wikipedia.org/wiki/Unix_time) in seconds
 
 UTF-8 string (can only contain hex chars, so numbers 0-9 and letters A-F) that contain SHA-256 checksum of file entry. Integer variables are first turn into little-endian byte arrays.
 
-&nbsp;
-
-&nbsp;
+---
 
 
 ### File entries (secret / encrypted)
 
 Can contain multiple file entries which are in following format:
 
-&nbsp;
 
 #### Key identifier
 
@@ -358,7 +357,6 @@ Byte array that contains the file content
 
 64 bit unsigned integer, Unix time in seconds (see type ID **117440513** in AUDALF specifications)
 
-&nbsp;
 
 #### Checksum
 
