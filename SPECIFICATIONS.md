@@ -36,7 +36,9 @@ CommonSecrets file should have file extension chain that explains how it should 
 
 ### Version number
 
-This **MUST** be first element (and this is only element where order matters). Contains an integer that tells what CommonSecrets version this file uses. Currently there is only version 1.
+This **MUST** be first element (and this is only element where order matters). It is first element because it is easier to check file formats when needed information is as early as possible. 
+
+Version number is an integer that tells what CommonSecrets version this file uses. Currently there is only version **1**.
 
 ## Data parts
 
@@ -76,6 +78,10 @@ Base64 encoded UTF-8 string, used to identify entries (doesn't need to unique)
 
 Base64 encoded UTF-8 string, might contain e.g. HTTPS URL
 
+#### Email
+
+Base64 encoded UTF-8 string
+
 #### Username
 
 Base64 encoded UTF-8 string
@@ -110,11 +116,11 @@ Base64 encoded UTF-8 string that contains tab (**\t**) separated tag entries
 
 #### Checksum
 
-UTF-8 string (can only contain hex chars, so numbers 0-9 and letters A-F) that contain SHA-256 checksum of all other login information variables concatenated together
+UTF-8 string (can only contain hex chars, so numbers 0-9 and letters A-F) that contain SHA-256 checksum of all other login information variables concatenated together. Integer variables are first turn into little-endian byte arrays.
 
 &nbsp;
 
-### Login informations (secret)
+### Login informations (secret / encrypted)
 
 Encrypted entries, each entry MUST contain following:
 
@@ -137,6 +143,10 @@ UTF-8 string, used to identify entries (doesn't need to unique)
 ##### Address / URL
 
 UTF-8 string, might contain e.g. HTTPS URL
+
+##### Email
+
+UTF-8 string
 
 ##### Username
 
@@ -237,14 +247,14 @@ Integer, [UNIX timestamp](https://en.wikipedia.org/wiki/Unix_time) in seconds
 
 #### Checksum
 
-UTF-8 string (can only contain hex chars, so numbers 0-9 and letters A-F) that contain SHA-256 checksum of note
+UTF-8 string (can only contain hex chars, so numbers 0-9 and letters A-F) that contain SHA-256 checksum of note. Integer variables are first turn into little-endian byte arrays.
 
 &nbsp;
 
 &nbsp;
 
 
-### Notes (secret)
+### Notes (secret / encrypted)
 
 Can contain multiple note secret entries which are in following format:
 
@@ -283,3 +293,73 @@ UTF-8 string that contains the content of note
 #### Checksum
 
 UTF-8 string (can only contain hex chars, so numbers 0-9 and letters A-F) that contain SHA-256 checksum of all other note secret variables concatenated together
+
+
+### File entries
+
+Can contain multiple file entries which are in following format:
+
+#### File name
+
+Base64 encoded UTF-8 string that contains the name of the file
+
+#### File content
+
+Base64 encoded byte array that contains the content of file
+
+#### Creation time
+
+Integer, [UNIX timestamp](https://en.wikipedia.org/wiki/Unix_time) in seconds
+
+#### Modification time
+
+Integer, [UNIX timestamp](https://en.wikipedia.org/wiki/Unix_time) in seconds
+
+#### Checksum
+
+UTF-8 string (can only contain hex chars, so numbers 0-9 and letters A-F) that contain SHA-256 checksum of file entry. Integer variables are first turn into little-endian byte arrays.
+
+&nbsp;
+
+&nbsp;
+
+
+### File entries (secret / encrypted)
+
+Can contain multiple file entries which are in following format:
+
+&nbsp;
+
+#### Key identifier
+
+Base64 encoded UTF-8 string, is used to pair one KDF entry to this note secret
+
+#### Algorithm
+
+See [Symmetric-key algorithms](Symmetric-key-algorithms)
+
+#### Data
+
+Base64 encoded byte array that contains encrypted [AUDALF](https://github.com/mcraiha/AUDALF) bytes. AUDALF contains following entries:
+
+##### File name
+
+UTF-8 string that contains the file name
+
+##### File content
+
+Byte array that contains the file content
+
+##### Creation time
+
+64 bit unsigned integer, Unix time in seconds (see type ID **117440513** in AUDALF specifications)
+
+##### Modification time
+
+64 bit unsigned integer, Unix time in seconds (see type ID **117440513** in AUDALF specifications)
+
+&nbsp;
+
+#### Checksum
+
+UTF-8 string (can only contain hex chars, so numbers 0-9 and letters A-F) that contain SHA-256 checksum of all other file entry secret variables concatenated together
