@@ -35,7 +35,7 @@ I tried to make this easy to implement in many programming languages and environ
 
 ## Implementations
 
-C# implementation will come later
+C# implementation can be found from [GitHub](https://github.com/mcraiha/CSharp-CommonSecrets)
 
 ## What are the negative traits?
 
