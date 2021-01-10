@@ -25,7 +25,7 @@
 | Note entries (secret / encrypted) | Definition of Note entries (secret / encrypted) | [Note entries (secret / encrypted)](#Note-entries-(secret-/-encrypted))
 | File entries | Definition of File entries | [File entries](#File-entries)
 | File entries (secret / encrypted) | Definition of File entries (secret / encrypted) | [File entries (secret / encrypted)](#File-entries-(secret-/-encrypted))
-
+| Contact informations | Definition of contact informations | [Contact informations)](#Contact-informations)
 
 ## Common things
 
@@ -319,7 +319,7 @@ Integer, [UNIX timestamp](https://en.wikipedia.org/wiki/Unix_time) in seconds
 
 #### Checksum
 
-UTF-8 string (can only contain hex chars, so numbers 0-9 and letters A-F) that contain SHA-256 checksum of file entry. Integer variables are first turn into little-endian byte arrays.
+UTF-8 string (can only contain hex chars, so numbers 0-9 and letters A-F) that contain SHA-256 checksum of file entry variables concatenated together. Integer variables are first turn into little-endian byte arrays.
 
 ---
 
@@ -361,3 +361,71 @@ Byte array that contains the file content
 #### Checksum
 
 UTF-8 string (can only contain hex chars, so numbers 0-9 and letters A-F) that contain SHA-256 checksum of all other file entry secret variables concatenated together
+
+---
+
+### Contact informations
+
+#### First name
+
+UTF-8 string that contains first name of the contact
+
+#### Last name
+
+UTF-8 string that contains last name of the contact
+
+#### Middle name
+
+UTF-8 string that contains middle name of the contact
+
+#### Name prefix
+
+UTF-8 string that contains name prefix of the contact
+
+#### Name suffix
+
+UTF-8 string that contains name suffix of the contact
+
+#### Nickname
+
+UTF-8 string that contains nickname of the contact
+
+#### Company
+
+UTF-8 string that contains company of the contact
+
+#### Job title
+
+UTF-8 string that contains job title of the contact
+
+#### Department
+
+UTF-8 string that contains department of the contact
+
+#### Emails
+
+UTF-8 string that contains tab (**\t**) separated email entries. Amount MUST match Email descriptions entries
+
+#### Email descriptions
+
+UTF-8 string that contains tab (**\t**) separated email description entries. Amount MUST match Email entries
+
+#### Phone numbers
+
+UTF-8 string that contains tab (**\t**) separated phone number entries. Amount MUST match Phone number descriptions entries
+
+#### Phone number descriptions
+
+UTF-8 string that contains tab (**\t**) separated phone number description entries. Amount MUST match phone number entries
+
+#### Creation time
+
+Integer, [UNIX timestamp](https://en.wikipedia.org/wiki/Unix_time) in seconds
+
+#### Modification time
+
+Integer, [UNIX timestamp](https://en.wikipedia.org/wiki/Unix_time) in seconds
+
+#### Checksum
+
+UTF-8 string (can only contain hex chars, so numbers 0-9 and letters A-F) that contain SHA-256 checksum of contact information variables concatenated together. Integer variables are first turn into little-endian byte arrays

@@ -11,7 +11,7 @@
 
 # CommonSecrets
 
-CommonSecrets is specification for storing encrypted and plaintext login information (username, password, URL etc.), notes and files.
+CommonSecrets is specification for storing encrypted and plaintext login information (username, password, URL etc.), contacts, notes and files.
 
 ## Why?
 
