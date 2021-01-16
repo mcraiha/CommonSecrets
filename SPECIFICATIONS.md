@@ -418,6 +418,46 @@ UTF-8 string that contains tab (**\t**) separated phone number entries. Amount M
 
 UTF-8 string that contains tab (**\t**) separated phone number description entries. Amount MUST match phone number entries
 
+#### Country
+
+UTF-8 string that contains country
+
+#### Street address
+
+UTF-8 string that contains street address
+
+#### Street address additional
+
+UTF-8 string that contains additional street address info
+
+#### Postal code
+
+UTF-8 string that contains postal code
+
+#### City
+
+UTF-8 string that contains city
+
+#### PO Box
+
+UTF-8 string that contains PO Box
+
+#### Birthday
+
+UTF-8 string that contains birthday
+
+#### Websites
+
+UTF-8 string that contains tab (**\t**) separated website address entries
+
+#### Relationship
+
+UTF-8 string that contains relationship
+
+#### Notes
+
+UTF-8 string, additional notes for this contact
+
 #### Creation time
 
 Integer, [UNIX timestamp](https://en.wikipedia.org/wiki/Unix_time) in seconds
