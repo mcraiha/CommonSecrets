@@ -25,7 +25,10 @@
 | Note entries (secret / encrypted) | Definition of Note entries (secret / encrypted) | [Note entries (secret / encrypted)](#Note-entries-(secret-/-encrypted))
 | File entries | Definition of File entries | [File entries](#File-entries)
 | File entries (secret / encrypted) | Definition of File entries (secret / encrypted) | [File entries (secret / encrypted)](#File-entries-(secret-/-encrypted))
-| Contact informations | Definition of contact informations | [Contact informations)](#Contact-informations)
+| Contact informations | Definition of contact informations | [Contact informations](#Contact-informations)
+| Contact informations (secret / encrypted) | Definition of contact informations (secret / encrypted) | [Contact informations (secret / encrypted)](#Contact-informations-(secret-/-encrypted))
+| Payment cards | Definition of payment cards | [Payment cards](#Payment-cards)
+| Payment cards (secret / encrypted) |  Definition of payment cards (secret / encrypted) | [Payment cards (secret / encrypted)](#Payment-cards-(secret-/-encrypted))
 
 ## Common things
 
@@ -69,7 +72,8 @@ Integer that tells how many iterations have to be done. Minimum value is 1, reco
 
 Base64 encoded UTF-8 string as identifier of KDF, used to pair KDF and Symmetric-key algorithm. SHOULD be unique, so every KDF in a file should have unique identifer.
 
----
+---  
+
 
 ### Login informations
 
@@ -77,7 +81,7 @@ Login information (plaintext ones). Every variable MUST be included even if they
 
 #### Title
 
-Base64 encoded UTF-8 string, used to identify entries (doesn't need to unique)
+Base64 encoded UTF-8 string, used to identify entries (doesn't need to be unique)
 
 #### Address / URL
 
@@ -125,6 +129,7 @@ UTF-8 string (can only contain hex chars, so numbers 0-9 and letters A-F) that c
 
 ---
 
+
 ### Login informations (secret / encrypted)
 
 Encrypted entries, each entry MUST contain following:
@@ -143,7 +148,7 @@ Base64 encoded byte array that contains encrypted [AUDALF](https://github.com/mc
 
 ##### Title
 
-UTF-8 string, used to identify entries (doesn't need to unique)
+UTF-8 string, used to identify entries (doesn't need to be unique)
 
 ##### Address / URL
 
@@ -190,6 +195,7 @@ UTF-8 string that contains tab (**\t**) separated tag entries
 UTF-8 string (can only contain hex chars, so numbers 0-9 and letters A-F) that contain SHA-256 checksum of all other login information secret variables concatenated together
 
 ---
+
 
 ### Symmetric-key algorithms
 
@@ -255,6 +261,7 @@ Integer, [UNIX timestamp](https://en.wikipedia.org/wiki/Unix_time) in seconds
 UTF-8 string (can only contain hex chars, so numbers 0-9 and letters A-F) that contain SHA-256 checksum of note. Integer variables are first turn into little-endian byte arrays.
 
 ---
+
 
 ### Note entries (secret / encrypted)
 
@@ -364,6 +371,7 @@ UTF-8 string (can only contain hex chars, so numbers 0-9 and letters A-F) that c
 
 ---
 
+
 ### Contact informations
 
 #### First name
@@ -457,6 +465,56 @@ UTF-8 string that contains relationship
 #### Notes
 
 UTF-8 string, additional notes for this contact
+
+#### Creation time
+
+Integer, [UNIX timestamp](https://en.wikipedia.org/wiki/Unix_time) in seconds
+
+#### Modification time
+
+Integer, [UNIX timestamp](https://en.wikipedia.org/wiki/Unix_time) in seconds
+
+#### Checksum
+
+UTF-8 string (can only contain hex chars, so numbers 0-9 and letters A-F) that contain SHA-256 checksum of contact information variables concatenated together. Integer variables are first turn into little-endian byte arrays
+
+
+---
+
+
+### Payment cards
+
+#### Title
+
+Base64 encoded UTF-8 string, used to identify entries (doesn't need to be unique)
+
+#### Name on card
+
+Base64 encoded UTF-8 string, name displayed on payment card
+
+#### Card type
+
+Base64 encoded UTF-8 string, card type (usually either Credit or Debit)
+
+#### Number
+
+Base64 encoded UTF-8 string, number on the card
+
+#### Security code
+
+Base64 encoded UTF-8 string, security code on the card
+
+#### Start date
+
+Base64 encoded UTF-8 string, first valid date of the card (usually month / year)
+
+#### Expiration date
+
+Base64 encoded UTF-8 string, expiration date of the card (usually month / year)
+
+#### Notes
+
+Base64 encoded UTF-8 string, additional notes for this payment card
 
 #### Creation time
 
