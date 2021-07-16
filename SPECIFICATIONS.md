@@ -338,7 +338,7 @@ Can contain multiple file entries which are in following format:
 
 #### Key identifier
 
-Base64 encoded UTF-8 string, is used to pair one KDF entry to this note secret
+Base64 encoded UTF-8 string, is used to pair one KDF entry to this file entry
 
 #### Algorithm
 
@@ -374,97 +374,99 @@ UTF-8 string (can only contain hex chars, so numbers 0-9 and letters A-F) that c
 
 ### Contact informations
 
+Can contain multiple contact informations which are in following format:
+
 #### First name
 
-UTF-8 string that contains first name of the contact
+Base64 encoded UTF-8 string that contains first name of the contact
 
 #### Last name
 
-UTF-8 string that contains last name of the contact
+Base64 encoded UTF-8 string that contains last name of the contact
 
 #### Middle name
 
-UTF-8 string that contains middle name of the contact
+Base64 encoded UTF-8 string that contains middle name of the contact
 
 #### Name prefix
 
-UTF-8 string that contains name prefix of the contact
+Base64 encoded UTF-8 string that contains name prefix of the contact
 
 #### Name suffix
 
-UTF-8 string that contains name suffix of the contact
+Base64 encoded UTF-8 string that contains name suffix of the contact
 
 #### Nickname
 
-UTF-8 string that contains nickname of the contact
+Base64 encoded UTF-8 string that contains nickname of the contact
 
 #### Company
 
-UTF-8 string that contains company of the contact
+Base64 encoded UTF-8 string that contains company of the contact
 
 #### Job title
 
-UTF-8 string that contains job title of the contact
+Base64 encoded UTF-8 string that contains job title of the contact
 
 #### Department
 
-UTF-8 string that contains department of the contact
+Base64 encoded UTF-8 string that contains department of the contact
 
 #### Emails
 
-UTF-8 string that contains tab (**\t**) separated email entries. Amount MUST match Email descriptions entries
+Base64 encoded UTF-8 string that contains tab (**\t**) separated email entries. Amount MUST match Email descriptions entries
 
 #### Email descriptions
 
-UTF-8 string that contains tab (**\t**) separated email description entries. Amount MUST match Email entries
+Base64 encoded UTF-8 string that contains tab (**\t**) separated email description entries. Amount MUST match Email entries
 
 #### Phone numbers
 
-UTF-8 string that contains tab (**\t**) separated phone number entries. Amount MUST match Phone number descriptions entries
+Base64 encoded UTF-8 string that contains tab (**\t**) separated phone number entries. Amount MUST match Phone number descriptions entries
 
 #### Phone number descriptions
 
-UTF-8 string that contains tab (**\t**) separated phone number description entries. Amount MUST match phone number entries
+Base64 encoded UTF-8 string that contains tab (**\t**) separated phone number description entries. Amount MUST match phone number entries
 
 #### Country
 
-UTF-8 string that contains country
+Base64 encoded UTF-8 string that contains country
 
 #### Street address
 
-UTF-8 string that contains street address
+Base64 encoded UTF-8 string that contains street address
 
 #### Street address additional
 
-UTF-8 string that contains additional street address info
+Base64 encoded UTF-8 string that contains additional street address info
 
 #### Postal code
 
-UTF-8 string that contains postal code
+Base64 encoded UTF-8 string that contains postal code
 
 #### City
 
-UTF-8 string that contains city
+Base64 encoded UTF-8 string that contains city
 
 #### PO Box
 
-UTF-8 string that contains PO Box
+Base64 encoded UTF-8 string that contains PO Box
 
 #### Birthday
 
-UTF-8 string that contains birthday
+Base64 encoded UTF-8 string that contains birthday
 
 #### Websites
 
-UTF-8 string that contains tab (**\t**) separated website address entries
+Base64 encoded UTF-8 string that contains tab (**\t**) separated website address entries
 
 #### Relationship
 
-UTF-8 string that contains relationship
+Base64 encoded UTF-8 string that contains relationship
 
 #### Notes
 
-UTF-8 string, additional notes for this contact
+Base64 encoded UTF-8 string, additional notes for this contact
 
 #### Creation time
 
@@ -478,11 +480,135 @@ Integer, [UNIX timestamp](https://en.wikipedia.org/wiki/Unix_time) in seconds
 
 UTF-8 string (can only contain hex chars, so numbers 0-9 and letters A-F) that contain SHA-256 checksum of contact information variables concatenated together. Integer variables are first turn into little-endian byte arrays
 
+---
+
+### Contact informations (secret / encrypted)
+
+Can contain multiple encrypted Contact informations which are in following format:
+
+
+#### Key identifier
+
+Base64 encoded UTF-8 string, is used to pair one KDF entry to this Contact information secret
+
+#### Algorithm
+
+See [Symmetric-key algorithms](Symmetric-key-algorithms)
+
+#### Data
+
+Base64 encoded byte array that contains encrypted [AUDALF](https://github.com/mcraiha/AUDALF) bytes. AUDALF contains following entries:
+
+##### First name
+
+UTF-8 string that contains first name of the contact
+
+##### Last name
+
+UTF-8 string that contains last name of the contact
+
+##### Middle name
+
+UTF-8 string that contains middle name of the contact
+
+##### Name prefix
+
+UTF-8 string that contains name prefix of the contact
+
+##### Name suffix
+
+UTF-8 string that contains name suffix of the contact
+
+##### Nickname
+
+UTF-8 string that contains nickname of the contact
+
+##### Company
+
+UTF-8 string that contains company of the contact
+
+##### Job title
+
+UTF-8 string that contains job title of the contact
+
+##### Department
+
+UTF-8 string that contains department of the contact
+
+##### Emails
+
+UTF-8 string that contains tab (**\t**) separated email entries. Amount MUST match Email descriptions entries
+
+##### Email descriptions
+
+UTF-8 string that contains tab (**\t**) separated email description entries. Amount MUST match Email entries
+
+##### Phone numbers
+
+UTF-8 string that contains tab (**\t**) separated phone number entries. Amount MUST match Phone number descriptions entries
+
+##### Phone number descriptions
+
+UTF-8 string that contains tab (**\t**) separated phone number description entries. Amount MUST match phone number entries
+
+##### Country
+
+UTF-8 string that contains country
+
+##### Street address
+
+UTF-8 string that contains street address
+
+##### Street address additional
+
+UTF-8 string that contains additional street address info
+
+##### Postal code
+
+UTF-8 string that contains postal code
+
+##### City
+
+UTF-8 string that contains city
+
+##### PO Box
+
+UTF-8 string that contains PO Box
+
+##### Birthday
+
+UTF-8 string that contains birthday
+
+##### Websites
+
+UTF-8 string that contains tab (**\t**) separated website address entries
+
+##### Relationship
+
+UTF-8 string that contains relationship
+
+##### Notes
+
+UTF-8 string, additional notes for this contact
+
+##### Creation time
+
+64 bit unsigned integer, Unix time in seconds (see type ID **117440513** in AUDALF specifications)
+
+##### Modification time
+
+64 bit unsigned integer, Unix time in seconds (see type ID **117440513** in AUDALF specifications)
+
+#### Checksum
+
+UTF-8 string (can only contain hex chars, so numbers 0-9 and letters A-F) that contain SHA-256 checksum of contact information variables concatenated together. Integer variables are first turn into little-endian byte arrays
 
 ---
 
 
 ### Payment cards
+
+Can contain multiple file payment cards which are in following format:
 
 #### Title
 
@@ -527,3 +653,67 @@ Integer, [UNIX timestamp](https://en.wikipedia.org/wiki/Unix_time) in seconds
 #### Checksum
 
 UTF-8 string (can only contain hex chars, so numbers 0-9 and letters A-F) that contain SHA-256 checksum of contact information variables concatenated together. Integer variables are first turn into little-endian byte arrays
+
+---
+
+### Payment cards (secret / encrypted)
+
+Can contain multiple encrypted payment cards which are in following format:
+
+
+#### Key identifier
+
+Base64 encoded UTF-8 string, is used to pair one KDF entry to this payment card secret
+
+#### Algorithm
+
+See [Symmetric-key algorithms](Symmetric-key-algorithms)
+
+#### Data
+
+Base64 encoded byte array that contains encrypted [AUDALF](https://github.com/mcraiha/AUDALF) bytes. AUDALF contains following entries:
+
+##### Title
+
+UTF-8 string, used to identify entries (doesn't need to be unique)
+
+##### Name on card
+
+UTF-8 string, name displayed on payment card
+
+##### Card type
+
+UTF-8 string, card type (usually either Credit or Debit)
+
+##### Number
+
+UTF-8 string, number on the card
+
+##### Security code
+
+UTF-8 string, security code on the card
+
+##### Start date
+
+UTF-8 string, first valid date of the card (usually month / year)
+
+##### Expiration date
+
+UTF-8 string, expiration date of the card (usually month / year)
+
+##### Notes
+
+UTF-8 string, additional notes for this payment card
+
+##### Creation time
+
+64 bit unsigned integer, Unix time in seconds (see type ID **117440513** in AUDALF specifications)
+
+##### Modification time
+
+64 bit unsigned integer, Unix time in seconds (see type ID **117440513** in AUDALF specifications)
+
+
+#### Checksum
+
+UTF-8 string (can only contain hex chars, so numbers 0-9 and letters A-F) that contain SHA-256 checksum of all other payment card secret variables concatenated together
