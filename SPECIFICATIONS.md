@@ -54,6 +54,17 @@ Version number is an integer that tells what CommonSecrets version this file use
 
 List of text objects that define key derivation functions. There can be multiple Key derivation functions defined in one CommonSecrets file.
 
+When derived key is used for encrypting/decrypting data, only needed bytes MUST be used. e.g. HMAC-SHA512 will provide 64 bytes, but ChaCha20 will only use first 32 bytes.
+
+| Type    | Bytes as hex |
+| -------- | ------- |
+| HMAC-SHA512 example output | `9d55fd1b69cd6a28cb4500c0873c5d9f2efb937e4be8016befb30b927bec0091dc040107379fd7f34f0270c6d2aca4091d2b64f3b0879c056baeb10159d49c15` |
+| ChaCha20 cipher key | `9d55fd1b69cd6a28cb4500c0873c5d9f2efb937e4be8016befb30b927bec0091` |
+| CTR-AES256 cipher key | `9d55fd1b69cd6a28cb4500c0873c5d9f2efb937e4be8016befb30b927bec0091` |
+| CTR-AES192 cipher key | `9d55fd1b69cd6a28cb4500c0873c5d9f2efb937e4be8016b` |
+| CTR-AES128 cipher key | `9d55fd1b69cd6a28cb4500c0873c5d9f` |
+
+
 #### KDF Algorithms
 
 Only [PBKDF2](https://en.wikipedia.org/wiki/PBKDF2) is supported, with **HMAC-SHA256** and **HMAC-SHA512** as pseudo-random functions.
@@ -66,7 +77,7 @@ Base64 encoded salt, decoded content should be 16 bytes (128 bits)
 
 ###### Iterations
 
-Integer that tells how many iterations have to be done. Minimum value is 1, recommended is something over 100 000
+Integer that tells how many iterations have to be done. Minimum value is 1, recommended is something over 100 000 and the maximum is 2 147 483 647.
 
 #### Identifier
 
